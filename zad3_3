@@ -1,0 +1,5 @@
+%%przygotowanie srodowiska jak w poleceniu
+clearvars;
+close all; 
+clc;
+%%
