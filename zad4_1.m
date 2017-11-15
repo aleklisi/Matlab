@@ -112,13 +112,13 @@ title('HE');
 
 subplot(2,2,3);
 title('CLAHE');
-adapthist2eq = adapthisteq(hist2,'clipLimit',0.02,'Distribution','rayleigh');
+adapthist2eq = adapthisteq(hist2);
 imshow(adapthist2eq);
 subplot(2,2,4);
 title('orygina');
 imshow(hist2);
 
-
+%%
 
 
 
