@@ -1,6 +1,7 @@
 clearvars;
 close all;
 clc;
+
 %%
 lenaRGB = imread('lenaRGB.bmp');
 lenaR = lenaRGB(:,:,1);

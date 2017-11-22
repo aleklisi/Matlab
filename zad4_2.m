@@ -11,7 +11,7 @@ bar(histogramZadany);
 %%
  phoboSaDJUST = imadjust(phobos);
  phoboada = adapthisteq(phobos);
- 
+ figure();
  imshow(phoboSaDJUST);
  figure();
  imshow(phoboada);

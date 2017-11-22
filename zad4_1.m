@@ -78,7 +78,7 @@ hist1eq = histeq(hist1,256);
 title('histeq');
 imshow(hist1eq);
 subplot(2,1,2);
-adapthist1eq = adapthisteq(hist1,'clipLimit',0.02,'Distribution','rayleigh');
+adapthist1eq = adapthisteq(hist1);
 imshow(adapthist1eq);
 title('adapthisteq');
 
@@ -86,9 +86,6 @@ title('adapthisteq');
 hist2 = imread('hist2.bmp');
 hist3 = imread('hist3.bmp');
 hist4 = imread('hist4.bmp');
-
-subplot(2,2,1);
-title('rozciagniecie');
 
 [H,x] = imhist(hist2,n);
 C = cumsum(H);
@@ -101,8 +98,8 @@ C2rescaled = C2 / max(C2) * 255;
 C2reint = uint8(C2rescaled);
 mylut = intlut(hist2,C2reint);
 imshow(mylut);
-
-subplot(2,1,2);
+figure();
+subplot(2,2,1);
 plot(x,H);
 title('zwykly histogram');
 
@@ -111,12 +108,12 @@ histeq(hist2,256);
 title('HE');
 
 subplot(2,2,3);
-title('CLAHE');
 adapthist2eq = adapthisteq(hist2);
 imshow(adapthist2eq);
+title('CLAHE');
 subplot(2,2,4);
-title('orygina');
 imshow(hist2);
+title('orygina');
 
 %%
 
