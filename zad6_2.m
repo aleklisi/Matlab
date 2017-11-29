@@ -13,8 +13,6 @@ subplot(3,1,2);
 imshow(filtred);
 subplot(3,1,3);
 imshow(diff);
-%%
-%dodaj porownaie
 
 %%
 I =  imread('lena.bmp');
