@@ -5,7 +5,6 @@ clearvars;
 plansza = imread('plansza.bmp');
 
 %%
-%conv2(,,'same');
 
 h3 = fspecial('average',3);
 h3double = double(h3);

@@ -1,0 +1,54 @@
+clc;
+close all;
+clearvars;
+%%
+load('MR_data.mat');
+%%
+size = 9;
+
+zmienna1 = convolution(I_noisy1,[size size]);
+zmienna2 = convolution(I_noisy2,[size size]);
+zmienna3 = convolution(I_noisy3,[size size]);
+zmienna4 = convolution(I_noisy4,[size size]);
+zmiennafree = convolution(I_noisefree,[size size]);
+
+zmienna1 = bilateral(I_noisy1,[size size]);
+zmienna2 = bilateral(I_noisy2,[size size]);
+zmienna3 = bilateral(I_noisy3,[size size]);
+zmienna4 = bilateral(I_noisy4,[size size]);
+zmiennafree = bilateral(I_noisefree,[size size]);
+%%
+figure();
+
+subplot(2,5,1);
+imshow(I_noisefree,[]);
+title('oryginal free');
+subplot(2,5,2);
+imshow(I_noisy1,[]);
+title('oryginal 1');
+subplot(2,5,3);
+imshow(I_noisy2,[]);
+title('oryginal 2');
+subplot(2,5,4);
+imshow(I_noisy3,[]);
+title('oryginal 3');
+subplot(2,5,5);
+imshow(I_noisy4,[]);
+title('oryginal 4');
+
+subplot(2,5,6);
+imshow(zmiennafree,[]);
+title('free');
+subplot(2,5,7);
+imshow(zmienna1,[]);
+title('1');
+subplot(2,5,8);
+imshow(zmienna2,[]);
+title('2');
+subplot(2,5,9);
+imshow(zmienna3,[]);
+title('3');
+subplot(2,5,10);
+imshow(zmienna4,[]);
+title('4');
+

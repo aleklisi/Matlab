@@ -17,20 +17,36 @@ subplot(2,3,1);
 imshow(moon);
 title('oryginal');
 subplot(2,3,2);
-imshow(maskaR1-maskaR2,[]);
+imshow(maskaR1,[]);
 title('wersj R');
 subplot(2,3,3);
-imshow(maskaP1-maskaP2,[]);
+imshow(maskaP1,[]);
 title('wersja P');
 subplot(2,3,4);
-imshow(maskaS1-maskaS2,[]);
+imshow(maskaS1,[]);
+title('wersja S');
+
+%%
+
+figure()
+subplot(2,3,1);
+imshow(moon);
+title('oryginal');
+subplot(2,3,2);
+imshow(maskaR2,[]);
+title('wersj R');
+subplot(2,3,3);
+imshow(maskaP2,[]);
+title('wersja P');
+subplot(2,3,4);
+imshow(maskaS2,[]);
 title('wersja S');
 
 %%
 
 OW = sqrt(maskaS1.^2 + maskaS2.^2); 
 
-OW2 = abs(maskaS1) + abs(maskaS2.^2); 
+OW2 = abs(maskaS1) + abs(maskaS2); 
 subplot(2,3,5);
 imshow(OW,[]);
 title('OW^2');
