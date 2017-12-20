@@ -44,7 +44,7 @@ end
 %%
 
 buzka = imread('buzka.bmp');
-SE4 = [0,0,0;1,1,1;0,0,0];
+SE4 = [1,0,0;0,1,0;0,0,1];
 buzkaEroded = imerode(buzka ,SE4);
 
 figure();
@@ -57,17 +57,123 @@ imshow(buzkaEroded);
 title('buzkaEroded');
 
 %%
-
+ertka = imread('ertka.bmp');
 SE = strel('square',3);
-ertkadilatate = imdilate(ertka, SE);
+
 figure();
-subplot(1,2,1);
+
+subplot(2,3,1);
 imshow(ertka);
 title('ertka');
 
+subplot(2,3,2);
+imshow(imerode(ertka,SE));
+title('imerode(ertka,SE)');
+
+subplot(2,3,3);
+imshow(imdilate(ertka, SE));
+title('imdilate(ertka, SE)');
+
+subplot(2,3,4);
+imshow(imopen(ertka,SE));
+title('imopen(ertka,SE)');
+
+subplot(2,3,5);
+imshow(imclose(ertka,SE));
+title('imclose(ertka,SE)');
+
+
+%%
+ertka = imread('wyspa.bmp');
+SE = strel('square',3);
+
+figure();
+
+subplot(2,3,1);
+imshow(ertka);
+title('ertka');
+
+subplot(2,3,2);
+imshow(imerode(ertka,SE));
+title('imerode(ertka,SE)');
+
+subplot(2,3,3);
+imshow(imdilate(ertka, SE));
+title('imdilate(ertka, SE)');
+
+subplot(2,3,4);
+imshow(imopen(ertka,SE));
+title('imopen(ertka,SE)');
+
+subplot(2,3,5);
+imshow(imclose(ertka,SE));
+title('imclose(ertka,SE)');
+%%
+ertka = imread('kolka.bmp');
+SE = strel('square',3);
+
+figure();
+
+subplot(2,3,1);
+imshow(ertka);
+title('ertka');
+
+subplot(2,3,2);
+imshow(imerode(ertka,SE));
+title('imerode(ertka,SE)');
+
+subplot(2,3,3);
+imshow(imdilate(ertka, SE));
+title('imdilate(ertka, SE)');
+
+subplot(2,3,4);
+imshow(imopen(ertka,SE));
+title('imopen(ertka,SE)');
+
+subplot(2,3,5);
+imshow(imclose(ertka,SE));
+title('imclose(ertka,SE)');
+
+%% minizadanie
+ertka = imread('ertka.bmp');
+SE = strel('square',3);
+
+    ertka = imopen(ertka,SE);
+
+for i = 1:2
+
+    ertka = imdilate(ertka, SE);
+end
+
+figure();
+imshow(ertka);
+
+%%
+I = imread('hom.bmp');
+SE1 = [0,1,0;1,1,1;0,1,0];
+SE2 = [1,0,1;0,0,0;1,0,1];
+
+result = bwhitmiss(I,SE1,SE2);
+
+figure();
+
+subplot(1,2,1);
+imshow(result);
+title('changed');
+
 subplot(1,2,2);
-imshow(ertkadilatate);
-title('ertkadilatate');
+imshow(I);
+title('not changed');
+
+
+
+
+
+
+
+
+
+
 
 
 
