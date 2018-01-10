@@ -1,21 +1,19 @@
-%
 clearvars;
 clear all;
 clc;
-
-image = imread('knee.png');
-imshow(image);
+%%
+knee = imread('knee.png');
+imshow(knee);
 
 %%
-
 ginput(1);
 
 %%
 
 selected = [347,195];
-image = double(image);
+knee = double(knee);
 
-[Y,X] = size(image);
+[Y,X] = size(knee);
 
 visited = zeros(Y,X);
 segmented = zeros(Y,X);
@@ -33,7 +31,7 @@ while iStack > 0
    if((nY-1 >= 1) && (nY+1 <= Y) && (nX-1 >= 1) && (nX+1 <= X))
        for J = nY-1:nY+1
            for I = nX-1:nX+1
-               length = abs(image(nY,nX) - image(J,I));
+               length = abs(knee(nY,nX) - knee(J,I));
                if (length < 4) && (visited(J,I) == 0)
                     iStack = iStack+1;
                     stack(iStack,:) = [J,I];
@@ -49,9 +47,9 @@ imshow(uint8(segmented),[]);
 
 %%
 selected = [347,195];
-image = double(image);
+knee = double(knee);
 
-[Y,X] = size(image);
+[Y,X] = size(knee);
 
 visited = zeros(Y,X);
 segmented = zeros(Y,X);
@@ -69,11 +67,11 @@ while iStack > 0
    nX = stack(iStack,2);
    iStack = iStack - 1;
    nS = nS+1;
-   mV = (mV*(nS-1) + image(nY,nX))/nS;
+   mV = (mV*(nS-1) + knee(nY,nX))/nS;
    if((nY-1 >= 1) && (nY+1 <= Y) && (nX-1 >= 1) && (nX+1 <= X))
        for J = nY-1:nY+1
            for I = nX-1:nX+1
-               length = abs(mV - image(J,I));
+               length = abs(mV - knee(J,I));
                if (length < 20) && (visited(J,I) == 0)
                     iStack = iStack+1;
                     stack(iStack,:) = [J,I];
@@ -92,16 +90,13 @@ imshow(segmented,[]);
 
 
 %%
-close all;
-clearvars;
-clc;
 
-image = imread('umbrealla.png');
-Img_start = image;
+umbrealla = imread('umbrealla.png');
+Img_start = umbrealla;
 
-image = double(rgb2hsv(image));
-imageH = image(:,:,1);
-[Y X] = size(imageH);
+umbrealla = double(rgb2hsv(umbrealla));
+imageH = umbrealla(:,:,1);
+[Y,X] = size(imageH);
 
 global sTh window_min_size segRes MRes index;
 sTh = 0.05;
@@ -120,7 +115,7 @@ while i < index
        i = i + 1;
        continue;
     end
-    [yF xF] = find(IB,1,'first');
+    [yF,xF] = find(IB,1,'first');
     IB_dilate = imdilate(IB,strel('square',3));
     IB_diff = imabsdiff(IB_dilate,IB);
     IB_mult = IB_diff.* segRes;
@@ -161,22 +156,26 @@ subplot(1,2,1); imshow(Img_start)
 subplot(1,2,2); imshow(Img_final,[]);
 
 %%
-close all;
-clearvars;
-clc;
-
 image1 = imread('dam_n_1.png');
 image2 = imread('dam_n.png');
 
-%subplot(1,2,1); imshow(image1);
-%subplot(1,2,2); imshow(image2);
+subplot(2,2,1); 
+imshow(image1);
+title('oorginal dam_n_1');
 
+subplot(2,2,2);
+imshow(image2);
+title('oorginal dam_n_1');
 Cn = image2;
 [Cn1, num] = bwlabel(image1);
 
-%imshow(Cn1,[]);
 
-[Y X] = size(image1);
+subplot(2,2,3);
+imshow(Cn1,[]);
+title('bwlabel dam_n_1');
+
+
+[Y,X] = size(image1);
 damImage = zeros(Y,X);
 while true
     zmiany = 0;
@@ -207,4 +206,6 @@ while true
     end;
 end
 
+subplot(2,2,4);
 imshow(damImage,[]);
+title('damImage');
